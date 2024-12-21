@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
     override fun clickSiteItem(position: Int) {
         val site = viewModel.getSite(position)
         val mIntent = Intent(Intent.ACTION_VIEW)
-        mIntent.setData(Uri.parse("http://"+site))
+        mIntent.setData(Uri.parse("http://" + site))
         startActivity(mIntent)
     }
 
@@ -49,20 +49,22 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
         viewModel.removeSite(position)
     }
 
-    private fun configListener(){
-        binding.buttonAdd.setOnClickListener{handleAddSite()}
+    private fun configListener() {
+        binding.buttonAdd.setOnClickListener { handleAddSite() }
     }
 
     private fun handleAddSite() {
-        val tela = layoutInflater.inflate(R.layout.sites_dialog,null)
-        val bindingDialog:SitesDialogBinding = SitesDialogBinding.bind(tela)
+        val tela = layoutInflater.inflate(R.layout.sites_dialog, null)
+        val bindingDialog: SitesDialogBinding = SitesDialogBinding.bind(tela)
 
         val builder = AlertDialog.Builder(this)
             .setView(tela)
             .setTitle(R.string.novo_site)
-            .setPositiveButton(R.string.salvar, DialogInterface.OnClickListener{dialog, which->
-                viewModel.addSite(bindingDialog.edittextApelido.text.toString(),
-                                  bindingDialog.edittextUrl.text.toString())
+            .setPositiveButton(R.string.salvar, DialogInterface.OnClickListener { dialog, which ->
+                viewModel.addSite(
+                    bindingDialog.edittextApelido.text.toString(),
+                    bindingDialog.edittextUrl.text.toString()
+                )
                 dialog.dismiss()
             })
             .setNegativeButton(R.string.cancelar, DialogInterface.OnClickListener { dialog, which ->
@@ -72,23 +74,23 @@ class MainActivity : AppCompatActivity(), SiteItemClickListener {
         builder.create().show()
     }
 
-    private fun configRecyclerView(){
+    private fun configRecyclerView() {
         adapter = SiteAdapter(this, mutableListOf(), this)
-        val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(this)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
         binding.recyclerviewSites.layoutManager = layoutManager
         binding.recyclerviewSites.adapter = adapter
     }
 
-    private fun configObservers(){
+    private fun configObservers() {
         viewModel.datasource.observe(this, Observer {
             adapter.updateDataset(it)
         })
         viewModel.favorite.observe(this, Observer {
             Toast.makeText(
                 this,
-                if(it){
+                if (it) {
                     R.string.add_favorite
-                }else{
+                } else {
                     R.string.del_favorite
                 },
                 Toast.LENGTH_LONG
