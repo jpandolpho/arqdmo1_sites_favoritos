@@ -12,23 +12,19 @@ class MainViewModel : ViewModel() {
     val datasource: LiveData<List<Site>> = _datasource
 
     private val _favorite = MutableLiveData<Boolean>()
-    val favorite :LiveData<Boolean> = _favorite
+    val favorite: LiveData<Boolean> = _favorite
 
     private val _removed = MutableLiveData<Boolean>()
-    val removed :LiveData<Boolean> = _removed
+    val removed: LiveData<Boolean> = _removed
 
     private val _added = MutableLiveData<Boolean>()
-    val added :LiveData<Boolean> = _added
+    val added: LiveData<Boolean> = _added
 
     init {
         load()
     }
 
-    fun getSite(position: Int):String = lista[position].url
-
-    private fun load() {
-        _datasource.value = lista
-    }
+    fun getSite(position: Int): String = lista[position].url
 
     fun toggleFavorite(position: Int) {
         val site = lista[position]
@@ -47,5 +43,9 @@ class MainViewModel : ViewModel() {
         lista.add(Site(apelido, url))
         _added.value = true
         load()
+    }
+
+    private fun load() {
+        _datasource.value = lista
     }
 }
