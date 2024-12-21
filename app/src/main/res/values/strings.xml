@@ -5,4 +5,5 @@
     <string name="site_url">Endereço do site</string>
     <string name="site_apelido">Identificação do site</string>
     <string name="novo_site">Novo site</string>
+    <string name="btn_add">Adicionar novo site</string>
 </resources>
