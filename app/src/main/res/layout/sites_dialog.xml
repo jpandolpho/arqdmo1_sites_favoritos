@@ -3,25 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    
+
     <EditText
+        android:id="@+id/edittext_apelido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edittext_apelido"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="4dp"
         android:hint="@string/site_apelido"
-        android:inputType="text"/>
+        android:inputType="text" />
 
     <EditText
+        android:id="@+id/edittext_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edittext_url"
         android:layout_marginHorizontal="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:hint="@string/site_url"
-        android:inputType="textWebEditText"/>
+        android:inputType="textWebEditText" />
 
 </LinearLayout>
