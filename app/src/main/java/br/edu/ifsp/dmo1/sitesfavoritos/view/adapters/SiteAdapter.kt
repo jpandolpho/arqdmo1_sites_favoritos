@@ -12,7 +12,7 @@ import br.edu.ifsp.dmo1.sitesfavoritos.view.listeners.SiteItemClickListener
 
 class SiteAdapter(
     val context: Context,
-    val dataset: List<Site>,
+    var dataset: List<Site>,
     val listener: SiteItemClickListener
 ) : RecyclerView.Adapter<SiteAdapter.ViewHolder>() {
 
@@ -41,5 +41,10 @@ class SiteAdapter(
 
     override fun getItemCount(): Int {
         return dataset.size
+    }
+
+    fun updateDataset(newDataset: List<Site>) {
+        this.dataset = newDataset
+        notifyDataSetChanged()
     }
 }
